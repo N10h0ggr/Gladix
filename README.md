@@ -89,8 +89,6 @@ sc create gladix_driver type= kernel binPath= "C:\path\to\kernel-driver.sys"
 sc start gladix_driver
 ```
 
----
-
 ### ⚙️ Build & Run the User Agent
 
 To compile and run the user-space service:
@@ -106,7 +104,6 @@ To install it as a Windows service:
 sc create gladix_agent binPath= "C:\path\to\user-agent.exe"
 sc start gladix_agent
 ```
-
 
 
 ## 🧪 Project Goals
