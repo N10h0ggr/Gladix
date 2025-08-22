@@ -1,0 +1,38 @@
+[package]
+edition = "2024"
+name = "gladix-driver"
+version = "0.2.0"
+description = "Security Detection WDM driver for Gladix project"
+license = "MIT OR Apache-2.0"
+keywords = ["windows", "driver", "sample", "example", "wdm"]
+categories = ["hardware-support"]
+publish = false
+
+[package.metadata.wdk.driver-model]
+driver-type = "WDM"
+
+[lib]
+crate-type = ["cdylib"]
+test = false
+
+[build-dependencies]
+wdk-build = { path = "C:\\Users\\MALDEV01\\Desktop\\my-code\\drivers\\ext-crates\\windows-drivers-rs-main\\crates\\wdk-build", version = "0.3.0" }
+
+[dependencies]
+wdk = { path = "C:\\Users\\MALDEV01\\Desktop\\my-code\\drivers\\ext-crates\\windows-drivers-rs-main\\crates\\wdk", version = "0.3.0" }
+wdk-alloc = { path = "C:\\Users\\MALDEV01\\Desktop\\my-code\\drivers\\ext-crates\\windows-drivers-rs-main\\crates\\wdk-alloc", version = "0.3.0" }
+wdk-panic = { path = "C:\\Users\\MALDEV01\\Desktop\\my-code\\drivers\\ext-crates\\windows-drivers-rs-main\\crates\\wdk-panic", version = "0.3.0" }
+wdk-sys = { path = "C:\\Users\\MALDEV01\\Desktop\\my-code\\drivers\\ext-crates\\windows-drivers-rs-main\\crates\\wdk-sys",  version = "0.3.0" }
+shared = { path = "../shared", default-features = false, features = ["kernel"]}
+prost = { version = "0.13", default-features = false, features = ["derive"] }
+
+[features]
+nightly = ["wdk/nightly", "wdk-sys/nightly"]
+
+[profile.dev]
+panic = "abort"
+lto = true
+
+[profile.release]
+panic = "abort"
+lto = true

@@ -1,0 +1,16 @@
+[workspace]
+members = [
+    "shared",
+    "user-agent",
+    "hooking-lib"
+]
+exclude = ["kernel-driver"]
+resolver = "3"
+
+[workspace.dependencies]
+log = "0.4.27"
+windows = { version = "0.61.3" }
+windows-sys = { version = "0.60.2", features = ["Win32_System_Memory", "Win32_System_Services", "Win32_System_Console"] }
+rusqlite = { version = "0.37.0", features = ["bundled"] }
+yara-x = "1.4.0"
+prost = "0.13.5"

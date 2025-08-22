@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package event;
+
+import "hook/hook.proto";
+import "scanner/scanner.proto";
+import "callbacks/callbacks.proto";
+
+// Unified event wrapper for all event types.
+message Event {
+  oneof kind {
+    // Events from hook module
+    hook.HookEvent           hook           = 1;
+    // Events from scanner module
+    scanner.FileScannerEvent scanner        = 2;
+    // Events from callbacks: process creation
+    callbacks.ProcessEvent   process_event = 3;
+    // Events from callbacks: image load
+    callbacks.ImageLoadEvent image_load     = 4;
+    // Events from callbacks: registry modifications
+    callbacks.RegistryEvent  registry      = 5;
+  }
+}

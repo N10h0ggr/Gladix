@@ -1,0 +1,6 @@
+[build]
+rustflags = ["-C", "target-feature=+crt-static", "-C", "panic=abort"]
+
+[term]
+# Hide warnings of external dependencies
+warnings = false

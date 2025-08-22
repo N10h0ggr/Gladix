@@ -1,0 +1,27 @@
+[database]
+path               = "telemetry.db"
+purge_on_restart   = true
+synchronous        = "NORMAL"
+journal_size_limit = 20000000
+checkpoint_seconds = 30                 # WAL commit time trigger
+ttl_seconds        = 3600               # DB event delete time trigger
+batch_size         = 1000               # In-memory buffer size before commit to WAL
+
+[scanner]
+max_file_size_mb = 50
+extensions = ["exe", "dll", "sys", "ocx"]
+rules = "C:\\Users\\MALDEV01\\RustroverProjects\\gladix-refactor\\user-agent\\src\\scanner\\yara-rules-core.yar"
+
+[scanner.risk_groups.high]
+scheduled_interval = 62
+directories = ["C:\\Users\\MALDEV01\\Documents\\tools"]
+
+[scanner.risk_groups.medium]
+scheduled_interval = 100
+directories = ["C:\\Users\\MALDEV01\\Documents\\GitHub"]
+
+[scanner.risk_groups.low]
+directories = ["C:\\Users\\MALDEV01\\Documents"]
+
+[scanner.risk_groups.special]
+directories = ["C:\\Users\\MALDEV01\\Documents"]

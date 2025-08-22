@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package hook;
+
+message HookEvent {
+  // Process/thread that triggered the hook.
+  uint32 pid = 1;
+  uint32 tid = 2;
+
+  // NTSTATUS returned by the original API (signed 32-bit in prost).
+  int32 status = 3;
+
+  // Per-API payload.
+  HookPayload payload = 4;
+}
+
+message HookPayload {
+  oneof payload {
+    NtCreateThreadExEvent      nt_create_thread_ex       = 1;
+    NtMapViewOfSectionEvent    nt_map_view_of_section    = 2;
+    NtProtectVirtualMemoryEvent nt_protect_virtual_memory = 3;
+    NtSetValueKeyEvent         nt_set_value_key          = 4;
+  }
+}
+
+// Remote or local thread creation. Detects classic CreateRemoteThreadEx and
+// process-hollowing thread startups; StartRoutine/Argument are useful triage fields.
+message NtCreateThreadExEvent {
+  uint64 start_routine   = 1; // thread entry point
+  uint64 start_argument  = 2; // user argument
+  uint32 create_flags    = 3; // THREAD_CREATE_*
+  uint64 process_handle  = 4; // raw HANDLE to detect remote vs local
+  uint32 desired_access  = 5; // requested access mask
+}
+
+// Section-based injections and manual maps. Remote mappings stand out via ProcessHandle.
+message NtMapViewOfSectionEvent {
+  uint64 base_address    = 1; // result base after call if available
+  uint64 view_size       = 2; // view size after call if available
+  uint32 win32_protect   = 3; // PAGE_*
+  uint32 allocation_type = 4; // MEM_*
+  uint64 process_handle  = 5; // raw HANDLE (remote if not current process)
+}
+
+// RX/RWX flips highlight unpacking, shellcode staging and similar behaviors.
+message NtProtectVirtualMemoryEvent {
+  uint64 base_address = 1;
+  uint64 region_size  = 2;
+  uint32 new_protect  = 3;
+  uint32 old_protect  = 4; // value returned by the API
+}
+
+// Registry writes are strong persistence indicators.
+message NtSetValueKeyEvent {
+  string key_path   = 1; // best-effort; may be empty if resolution fails
+  string value_name = 2;
+  uint32 value_type = 3; // REG_*
+  uint32 data_size  = 4;
+}

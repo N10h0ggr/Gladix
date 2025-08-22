@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package callbacks;
+
+message ProcessEvent {
+  uint32 pid         = 1;  // Process ID
+  uint32 ppid        = 2;  // Parent Process ID
+  string image_path  = 3;  // Unicode image file name
+  string cmdline     = 4;  // Unicode command line
+}
+
+message ImageLoadEvent {
+  uint64 image_base       = 1;  // Base address of the loaded image
+  uint32 image_size       = 2;  // Size in bytes
+  string full_image_name  = 3;  // Unicode path to image
+  uint32 process_id       = 4;  // ID of the process into which it was loaded
+}
+
+message RegistryEvent {
+  string key_path       = 1;  // Full registry key name
+  OperationType op_type = 2;  // Create/Delete/Modify
+  bytes old_value       = 3;  // Previous data (if applicable)
+  bytes new_value       = 4;  // New data (if applicable)
+  uint32 process_id     = 5;  // ID of process making change
+}
+
+enum OperationType {
+  UNKNOWN  = 0;
+  CREATE   = 1;
+  DELETE   = 2;
+  MODIFY   = 3;
+}

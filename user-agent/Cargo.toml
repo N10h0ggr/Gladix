@@ -1,0 +1,21 @@
+[package]
+name = "user-agent"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+log.workspace = true
+windows-sys.workspace = true
+rusqlite.workspace = true
+yara-x.workspace = true
+prost.workspace = true
+flexi_logger = "0.31.2"
+serde = { version = "1.0.219", features = ["derive"] }
+toml = "0.9.2"
+notify = "8.1.0"
+shared = { path = "../shared", features = ["user"] }
+rustc-hash = "2.1.1"
+zip = "4.3.0"
+thiserror = "2.0.12"
+strum_macros = "0.27.1"
+

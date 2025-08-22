@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package scanner;
+
+message FileScannerEvent {
+  string file = 1;
+  string rule_name = 2;
+}
