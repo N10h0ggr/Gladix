@@ -14,7 +14,6 @@ The goal is to understand and implement, from scratch, the core building blocks 
 
 This project does **not** aim to be a production-ready EDR, but rather a practical foundation for experimentation, security research, and studying how endpoint sensors operate.
 
----
 
 ## 📂 Project Structure
 
@@ -25,7 +24,6 @@ The repository is organized as a Rust workspace:
 - **`hooking-lib/`** – DLL for userland API hooking (e.g., `ntdll.dll` detours).
 - **`kernel-driver/`** – Windows kernel driver (Rust + C bindings) for capturing process, file, registry, and network activity.
 
----
 
 ## 🛠️ Development
 
@@ -75,7 +73,6 @@ cargo make
 
 ⚠️ Only run in **isolated virtual machines**. The driver and DLL injection may cause instability.
 
----
 
 ## ✨ Features (current / roadmap)
 
