@@ -1,2 +1,3 @@
 *.yar linguist-detectable=false
 *.yara linguist-detectable=false 
+"*.yara linguist-detectable=false" 
