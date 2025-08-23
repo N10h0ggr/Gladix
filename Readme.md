@@ -14,6 +14,11 @@ The goal is to understand and implement, from scratch, the core building blocks 
 This project does **not** aim to be a production-ready EDR, but rather a practical foundation for experimentation, security research, and studying how endpoint sensors operate.
 
 
+## 🖼️ Architecture
+
+![Gladix Architecture](docs/architecture.png)
+
+
 ## 📂 Project Structure
 
 The repository is organized as a Rust workspace:
