@@ -16,7 +16,7 @@ This project does **not** aim to be a production-ready EDR, but rather a practic
 
 ## 🖼️ Architecture
 
-![Gladix Architecture](docs/architecture.png)
+![Gladix Architecture](docs/architecture.jpg)
 
 
 ## 📂 Project Structure
