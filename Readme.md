@@ -1,4 +1,3 @@
-
 # Gladix – Basic EDR for Windows
 
 > ⚠️ **Work in Progress**  
@@ -34,19 +33,30 @@ The repository is organized as a Rust workspace:
 - [WinDbg](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/) (recommended for driver debugging)
 - [SQLite](https://www.sqlite.org/) (bundled, no extra service required)
 - Virtualization software (VMware/VirtualBox) for safe testing
-
-> **Linking Windows Drivers libraries**:  
-> When building the `kernel-driver`, ensure that the **`windows-drivers-rs`** crate is properly linked to your **local Windows SDK libraries**.  
-> You may need to configure the `LIB` environment variable to point to your Visual Studio + Windows Kits `Lib` directories (e.g., `C:\Program Files (x86)\Windows Kits\10\Lib\10.0.xxxxx.0\km\x64`).
+- [Google Protocol Buffers (protoc)](https://grpc.io/docs/protoc-installation/) – required for compiling `.proto` schemas and serializing events
+- [windows-drivers-rs](https://github.com/microsoft/windows-drivers-rs) – must be linked to the project before compiling the kernel driver
 
 
 ### Build
 Clone the repository and build with Cargo:
 
 ```bash
-git clone https://github.com/<your-username>/gladix.git
+git clone https://github.com/N10h0ggr/Gladix.git
+```
+
+To build the user agent, shared library, and the hooking DLL:
+
+```bash
 cd gladix-refactor
 cargo build --release
+```
+
+Since the kernel driver is compiled in `no_std`, it must be compiled separately:
+
+> **Linking Windows Drivers libraries**:
+> When building the `kernel-driver`, ensure that the **`windows-drivers-rs`** crate is properly linked in your `Cargo.toml`.
+
+```bash
 cd kernel-driver
 cargo make
 ```
@@ -56,10 +66,13 @@ cargo make
 1. **Install the kernel driver** (elevated prompt; adjust names/paths):
 
    With an **INF file**:
+
    ```cmd
    pnputil /add-driver path\to\driver.inf /install
    ```
+
    Without INF (legacy service install):
+
    ```cmd
    sc create Gladix type= kernel binPath= C:\path\to\gladix.sys start= demand
    sc start Gladix
@@ -73,18 +86,15 @@ cargo make
 
 ⚠️ Only run in **isolated virtual machines**. The driver and DLL injection may cause instability.
 
-
 ## ✨ Features (current / roadmap)
 
-- [x] Kernel callbacks for process, registry, and file events
-- [x] Shared memory ring buffer for kernel ↔ userland communication
-- [x] Event persistence in SQLite (WAL mode)
-- [x] YARA-based file scanning
-- [x] API hooking via DLL injection
-- [x] Process image load monitoring
-- [x] Registry key/value tracking
-- [ ] Network activity visibility (via Windows Filtering Platform) – 🚧 roadmap
-- [ ] Basic response actions (kill process, block operation) – 🚧 roadmap
-
-
+* [x] Kernel callbacks for process, registry, and file events
+* [x] Shared memory ring buffer for kernel ↔ userland communication
+* [x] Event persistence in SQLite (WAL mode)
+* [x] YARA-based file scanning
+* [x] API hooking via DLL injection
+* [x] Process image load monitoring
+* [x] Registry key/value tracking
+* [ ] Network activity visibility (via Windows Filtering Platform) – 🚧 roadmap
+* [ ] Basic response actions (kill process, block operation) – 🚧 roadmap
 
