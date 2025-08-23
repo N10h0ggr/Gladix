@@ -45,6 +45,8 @@ git clone https://github.com/N10h0ggr/Gladix.git
 ```
 
 To build the user agent, shared library, and the hooking DLL:
+> **Setting Rules**:
+> You may need to specify the path to your YARA rules in `user-agent/src/config/config.toml` before compiling.
 
 ```bash
 cd gladix-refactor
