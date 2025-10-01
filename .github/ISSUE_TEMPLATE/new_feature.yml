@@ -1,6 +1,7 @@
 name: "Nueva funcionalidad"
 description: "Proponer una nueva funcionalidad o mejora para el proyecto"
 title: "[FEATURE] <título descriptivo>"
+labels: ["feature", "enhancement"]
 assignees: []
 
 body:
@@ -13,35 +14,40 @@ body:
   - type: input
     id: summary
     attributes:
-      label: Descripción breve
-      description: Explicá en una línea qué funcionalidad se propone agregar.
-      placeholder: Ejemplo: "Agregar autenticación JWT al backend"
+      label: "Descripción breve"
+      description: "Explicá en una línea qué funcionalidad se propone agregar."
+      placeholder: "Ejemplo: Agregar autenticación JWT al backend"
     validations:
       required: true
 
   - type: textarea
     id: motivation
     attributes:
-      label: Motivación / Problema a resolver
-      description: Explica por qué se necesita esta funcionalidad o qué problema resuelve.
-      placeholder: Ejemplo: "El sistema actual usa sesiones, lo cual complica la autenticación entre microservicios. JWT facilitaría la comunicación segura."
+      label: "Motivación / Problema a resolver"
+      description: "Explicá por qué se necesita esta funcionalidad o qué problema resuelve."
+      placeholder: |
+        Ejemplo:
+        El sistema actual usa sesiones, lo cual complica la autenticación entre microservicios.
+        JWT facilitaría la comunicación segura.
     validations:
       required: true
 
   - type: textarea
     id: proposal
     attributes:
-      label: Propuesta / Solución sugerida
-      description: Describe la solución técnica o funcional que propones. Puedes incluir ejemplos, pasos o detalles de implementación.
-      placeholder: Ejemplo: "Crear un endpoint /auth/login que genere un JWT al autenticarse correctamente."
+      label: "Propuesta / Solución sugerida"
+      description: "Describí la solución técnica o funcional que proponés. Podés incluir ejemplos, pasos o detalles de implementación."
+      placeholder: |
+        Ejemplo:
+        Crear un endpoint /auth/login que genere un JWT al autenticarse correctamente.
     validations:
       required: true
 
   - type: textarea
     id: acceptance_criteria
     attributes:
-      label: Criterios de aceptación
-      description: Indica qué condiciones deben cumplirse para que se considere completa la funcionalidad.
+      label: "Criterios de aceptación"
+      description: "Indicá qué condiciones deben cumplirse para que se considere completa la funcionalidad."
       placeholder: |
         - El usuario puede iniciar sesión y recibir un JWT.
         - El sistema valida tokens en los endpoints protegidos.
@@ -52,17 +58,17 @@ body:
   - type: textarea
     id: dependencies
     attributes:
-      label: Impacto / Dependencias
-      description: Menciona si esta funcionalidad depende de otro issue o afecta otras partes del sistema.
-      placeholder: Ejemplo: "Depende del issue #45 (endpoint de registro de usuario)."
+      label: "Impacto / Dependencias"
+      description: "Mencioná si esta funcionalidad depende de otro issue o afecta otras partes del sistema."
+      placeholder: "Ejemplo: Depende del issue #45 (endpoint de registro de usuario)."
     validations:
       required: false
 
   - type: textarea
     id: notes
     attributes:
-      label: Notas adicionales / Referencias
-      description: Agrega enlaces, documentación, capturas u otra información relevante.
-      placeholder: Ejemplo: "Ver documentación de JWT en https://jwt.io/introduction"
+      label: "Notas adicionales / Referencias"
+      description: "Agregá enlaces, documentación, capturas u otra información relevante."
+      placeholder: "Ejemplo: Ver documentación de JWT en https://jwt.io/introduction"
     validations:
       required: false
