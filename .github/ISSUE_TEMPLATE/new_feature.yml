@@ -1,74 +1,75 @@
-name: "Nueva funcionalidad"
-description: "Proponer una nueva funcionalidad o mejora para el proyecto"
-title: "[FEATURE] <título descriptivo>"
-labels: ["feature", "enhancement"]
+name: "Tarjeta de desarrollo - Nueva funcionalidad"
+description: "Crear una tarjeta para planificar e implementar una nueva funcionalidad del proyecto"
+title: "[Feature] Nombre de la funcionalidad"
 assignees: []
 
 body:
   - type: markdown
     attributes:
       value: |
-        Gracias por proponer una nueva funcionalidad 🚀  
-        Por favor completá la siguiente información para ayudarnos a entender mejor tu propuesta.
+        ### 🧩 Nueva funcionalidad
+        Completa esta tarjeta para documentar una nueva tarea de desarrollo o implementación.
 
   - type: input
-    id: summary
+    id: feature_name
     attributes:
-      label: "Descripción breve"
-      description: "Explicá en una línea qué funcionalidad se propone agregar."
-      placeholder: "Ejemplo: Agregar autenticación JWT al backend"
+      label: Nombre de la funcionalidad
+      description: Breve nombre identificativo de la tarea o funcionalidad.
+      placeholder: Ejemplo: Autenticación con JWT
     validations:
       required: true
 
   - type: textarea
-    id: motivation
+    id: description
     attributes:
-      label: "Motivación / Problema a resolver"
-      description: "Explicá por qué se necesita esta funcionalidad o qué problema resuelve."
-      placeholder: |
-        Ejemplo:
-        El sistema actual usa sesiones, lo cual complica la autenticación entre microservicios.
-        JWT facilitaría la comunicación segura.
+      label: Descripción técnica
+      description: Explica brevemente qué se debe desarrollar. Se recomienda indicar módulos o componentes afectados.
+      placeholder: Ejemplo: Implementar el módulo de autenticación basado en JWT. Incluir endpoints de login, logout y verificación de token.
     validations:
       required: true
 
   - type: textarea
-    id: proposal
+    id: objective
     attributes:
-      label: "Propuesta / Solución sugerida"
-      description: "Describí la solución técnica o funcional que proponés. Podés incluir ejemplos, pasos o detalles de implementación."
-      placeholder: |
-        Ejemplo:
-        Crear un endpoint /auth/login que genere un JWT al autenticarse correctamente.
+      label: Objetivo o resultado esperado
+      description: Indica qué se busca conseguir con esta funcionalidad o cuál es el valor que aporta al sistema.
+      placeholder: Ejemplo: Permitir la autenticación sin mantener sesiones en el servidor, facilitando la escalabilidad del backend.
     validations:
       required: true
+
+  - type: textarea
+    id: implementation_details
+    attributes:
+      label: Detalles de implementación
+      description: Añade información técnica relevante sobre cómo debería implementarse. Puedes incluir librerías, endpoints, estructuras de datos o esquemas.
+      placeholder: Ejemplo: Usar la librería `jsonwebtoken`. Crear middleware de validación de token en las rutas protegidas.
+    validations:
+      required: false
 
   - type: textarea
     id: acceptance_criteria
     attributes:
-      label: "Criterios de aceptación"
-      description: "Indicá qué condiciones deben cumplirse para que se considere completa la funcionalidad."
+      label: Criterios de aceptación
+      description: Define las condiciones mínimas que deben cumplirse para dar la funcionalidad por completada.
       placeholder: |
-        - El usuario puede iniciar sesión y recibir un JWT.
-        - El sistema valida tokens en los endpoints protegidos.
-        - Se agregan pruebas unitarias y documentación.
+        - El usuario puede iniciar sesión correctamente.
+        - Se devuelve un JWT válido.
+        - Las rutas protegidas solo permiten acceso con token válido.
+        - Se añaden pruebas unitarias.
     validations:
       required: true
 
   - type: textarea
     id: dependencies
     attributes:
-      label: "Impacto / Dependencias"
-      description: "Mencioná si esta funcionalidad depende de otro issue o afecta otras partes del sistema."
-      placeholder: "Ejemplo: Depende del issue #45 (endpoint de registro de usuario)."
+      label: Dependencias o relaciones
+      description: Indica si esta tarea depende de otra o afecta a otras partes del proyecto.
+      placeholder: Ejemplo: Depende de la finalización del issue #42 (registro de usuario).
     validations:
       required: false
 
   - type: textarea
     id: notes
     attributes:
-      label: "Notas adicionales / Referencias"
-      description: "Agregá enlaces, documentación, capturas u otra información relevante."
-      placeholder: "Ejemplo: Ver documentación de JWT en https://jwt.io/introduction"
-    validations:
-      required: false
+      label: Notas adicionales
+      description: Añade información complementaria, referencias o enlaces a documentación.
