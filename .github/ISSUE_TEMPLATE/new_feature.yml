@@ -1,7 +1,6 @@
 name: "Nueva funcionalidad"
 description: "Proponer una nueva funcionalidad o mejora para el proyecto"
 title: "[FEATURE] <título descriptivo>"
-projects: "Gladix"
 assignees: []
 
 body:
